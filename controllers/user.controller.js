@@ -1,14 +1,38 @@
 const User = require(`../models/user`)
-const bcryptjs = require('bcryptjs')
+const bcryptjs = require('bcryptjs');
+const { generateJWT } = require('../helpers/generate.jwt');
+
+const usersGetById = async (req, res) => {
+    const {id} = req.params;
+    const user = await User.findById(id);
+
+    res.json(user)
+}
 
 
-const usersGet = async (req, res) => {
+const verifyUser = async (req, res) => {
+
+    const {user} = req;
+
+    const token = await generateJWT(user.uid);
+
+    const userFound = {
+        uid: user.uid,
+        name: user.name,
+        lastName: user.lastName,
+        email: user.email,
+        address: user.address,
+        cp: user.cp,
+        city: user.city,
+        country: user.country
+    }
+
     //objeto con todos los usuarios v
     //const users = await User.find();
     const { desde = 0, limite = 5 } = req.query;
 
     /*     const users = await User.find()
-            .sort(Number(desde))
+            .skip(Number(desde))
             .limit(Number(limite));
     
         const total = await User.countDocuments(); */
@@ -22,8 +46,8 @@ const usersGet = async (req, res) => {
     )
 
     res.json({
-        users,
-        total
+        user:userFound,
+        token
     })
 }
 const usersPost = async (req, res) => {
@@ -55,11 +79,11 @@ const usersPut = async (req, res) => {
 
     const { id } = req.params
     const { _id, password, ...resto } = req.body;
-    /*     if(password){
+         if(password){
             const salt = bcryptjs.genSaltDync();
             resto.password = bcryptjs.hashSync(password,salt);
         }
-     */
+     
 
     const user = await User.findByIdAndUpdate(id, resto)
 
@@ -82,7 +106,8 @@ const usersDelete = async (req, res) => {
 }
 
 module.exports = {
-    usersGet,
+    verifyUser,
+    usersGetById,
     usersPost,
     usersPut,
     usersDelete

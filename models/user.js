@@ -16,12 +16,29 @@ const userSchema = Schema({
         type: String,
         unique: [true, `Email has been already used`]
     },
+    address: {
+        type: String,
+        default:''
+    },
+    cp: {
+        type: String,
+        default:''
+    },
+    city: {
+        type: String,
+        default:''
+    },
+    country: {
+        type: String,
+        default:''
+    },
     password: {
         type: String,
         required: [true, `Password required`]
     },
     status: {
-        type: Boolean
+        type: Boolean,
+        default: true
     }
 });
 
