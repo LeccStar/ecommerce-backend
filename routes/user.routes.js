@@ -5,7 +5,7 @@ const jsonParser = bodyParser.json()
 const { verifyUser, usersPost, usersPut, usersDelete, usersGetById } = require("../controllers/user.controller")
 const {body, check}= require("express-validator");
 const { validateFields, validateJWT } = require("../middlewares/");
-const categoryExists = require("../helpers/validate-db");
+const {categoryExists} = require("../helpers/validate-db");
 const { verify } = require("jsonwebtoken");
 
 router.get("/",validateJWT, verifyUser);
