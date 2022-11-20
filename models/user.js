@@ -9,9 +9,6 @@ const userSchema = Schema({
         type: String,
         required: [true, `Last name required`]
     },
-    age: {
-        type: String
-    },
     email: {
         type: String,
         unique: [true, `Email has been already used`]
@@ -27,6 +24,10 @@ const userSchema = Schema({
     city: {
         type: String,
         default:''
+    },
+    state: {
+        type: String,
+        default: ''
     },
     country: {
         type: String,

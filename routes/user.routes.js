@@ -8,7 +8,7 @@ const { validateFields, validateJWT } = require("../middlewares/");
 const {categoryExists} = require("../helpers/validate-db");
 const { verify } = require("jsonwebtoken");
 
-router.get("/",validateJWT, verifyUser);
+router.get("/",validateJWT,verifyUser );
 router.get('/:id',[
     validateJWT,
     check('id', 'No Mongo id').isMongoId(),

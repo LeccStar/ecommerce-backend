@@ -20,6 +20,7 @@ const validateJWT = async (req, res, next) =>{
             return res.status(400).json({msg: "token invalid"});
         }
 
+        req.user=user
         next();
     } catch (error) {
         console.log(error);

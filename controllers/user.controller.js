@@ -24,26 +24,9 @@ const verifyUser = async (req, res) => {
         address: user.address,
         cp: user.cp,
         city: user.city,
+        state: user.state,
         country: user.country
     }
-
-    //objeto con todos los usuarios v
-    //const users = await User.find();
-    const { desde = 0, limite = 5 } = req.query;
-
-    /*     const users = await User.find()
-            .skip(Number(desde))
-            .limit(Number(limite));
-    
-        const total = await User.countDocuments(); */
-    const [users, total] = await Promise.all(
-        [
-            User.find({ status: true })
-                .skip(Number(desde))
-                .limit(Number(limite)),
-            User.countDocuments({ status: true })
-        ]
-    )
 
     res.json({
         user:userFound,
