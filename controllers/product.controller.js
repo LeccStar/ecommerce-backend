@@ -9,7 +9,7 @@ const productsGet = async (req, res) => {
                 .populate('category','name')
                 .skip(Number(desde))
                 .limit(Number(limite)),
-            User.countDocuments({ status: true })
+            Product.countDocuments({ status: true })
         ]
     ) 
     res.json({

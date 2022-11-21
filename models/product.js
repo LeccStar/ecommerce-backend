@@ -13,17 +13,13 @@ const productsSchema = Schema({
         type:Boolean,
         default: true
     },
-    imgUrl1:{
-        type:String,
-        default:""
+    imgUrls:{
+        type:Array,
+        default:[]
     },
-    imgUrl2:{
-        type:String,
-        default:""
-    },
-    imgUrl3:{
-        type:String,
-        default:""
+    category: {
+        type:Schema.Types.ObjectId,
+        ref: 'Category'
     },
     price:{
         type: Number,
