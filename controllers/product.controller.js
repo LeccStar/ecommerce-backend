@@ -20,7 +20,7 @@ const productsGet = async (req, res) => {
 
 const productsGetById = async (req, res) => {
     const {id} = req.params;
-    const product = await Product.findById(id).populate('category','name')
+    const product = await Product.findById(id)
     ;
 
     res.json(product)
