@@ -26,7 +26,20 @@ const productsGetById = async (req, res) => {
     res.json(product)
 }
 
+const productsPut = async (req, res) => {
+    const {id} = req.params
+    const product = req.body
+
+    await Product.findByIdAndUpdate(id, product)
+
+    res.json({
+        "msg": "put",
+        product
+    })
+}
+
 module.exports = {
     productsGet,
-    productsGetById
+    productsGetById,
+    productsPut
 }

@@ -7,32 +7,36 @@ const productsSchema = Schema({
     },
     description: {
         type: String,
-        required: [true,'description required']
+        required: [true, 'description required']
     },
-    status:{
-        type:Boolean,
+    status: {
+        type: Boolean,
         default: true
     },
-    imgUrls:{
-        type:Array,
-        default:[]
+    imgUrls: {
+        type: Array,
+        default: []
     },
     category: {
-        type:Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Category'
     },
-    price:{
+    price: {
         type: Number,
         required: [true, 'price required']
     },
-    discount:{
+    discount: {
         type: Boolean,
         default: false
     },
-    discount_percentaje:{
-    type: Number,
-    default: 0
+    discount_percentaje: {
+        type: Number,
+        default: 0
+    },
+    storage: {
+        type: Number,
+        default: 0
     }
 });
 
-module.exports = model ("Product", productsSchema)
+module.exports = model("Product", productsSchema)
