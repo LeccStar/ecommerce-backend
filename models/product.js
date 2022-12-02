@@ -33,7 +33,7 @@ const productsSchema = Schema({
         type: Number,
         default: 0
     },
-    storage: {
+    stock: {
         type: Number,
         default: 0
     }
